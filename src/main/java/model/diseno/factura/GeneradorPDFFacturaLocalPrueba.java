@@ -3,6 +3,7 @@ package model.diseno.factura;
 import auxiliar.Meses;
 import auxiliar.NumeroEnTexto;
 import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -73,17 +74,41 @@ public class GeneradorPDFFacturaLocalPrueba extends GeneradorPDFFactura {
 
     private void rellenarContenido(LocalDate fechaFactura) throws DocumentException {
         NumeroEnTexto numero = new NumeroEnTexto();
-        Paragraph contenido = null;
-        if (arrendatario.getApellidos() != null) { // es una persona física
-            contenido = new Paragraph("He recibido de " + arrendatario.getNombre() + " " + arrendatario.getApellidos() + " con NIF " + arrendatario.getDni() + " la "
-                    + "cantidad de " + NumeroEnTexto.convertirNumeroATextoDouble(contrato.getPrecio2Inmueble(), false) + " euros ( " + decimal.format(contrato.getPrecio2Inmueble()) + " € ) en concepto de arrendamiento del local de mi propiedad, situado "
-                    + "en " + inmueble.getNombreCalle() + " nº " + inmueble.getNumeroCalle() + ", del término municipal de " + inmueble.getLocalidad() + " correspondiente al mes de " + Meses.getMes(fechaFactura.getMonthValue()) + " de "
-                    + fechaFactura.getYear() + ".", FontFactory.getFont("arial", 12, Font.PLAIN, BaseColor.BLACK));
+        Paragraph contenido = new Paragraph();
+        com.itextpdf.text.Font fuenteNegrita = new com.itextpdf.text.Font(com.itextpdf.text.Font.getFamily("ARIAL"), 12, com.itextpdf.text.Font.BOLD);//negrita
+        com.itextpdf.text.Font fuenteNormal = new com.itextpdf.text.Font(com.itextpdf.text.Font.getFamily("ARIAL"), 12, com.itextpdf.text.Font.NORMAL);
+        if (arrendatario.getApellidos() != null) { // es una persona física                    
+            contenido.add(new Chunk("He recibido de ", fuenteNormal));
+            contenido.add(new Chunk(arrendatario.getNombre(), fuenteNegrita));
+            contenido.add(new Chunk(" ", fuenteNormal));
+            contenido.add(new Chunk(arrendatario.getApellidos(), fuenteNegrita));
+            contenido.add(new Chunk(" con NIF ", fuenteNormal));
+            contenido.add(new Chunk(arrendatario.getDni(), fuenteNegrita));
+            contenido.add(new Chunk(" la cantidad de ", fuenteNormal));
+            contenido.add(new Chunk(NumeroEnTexto.convertirNumeroATextoDouble(contrato.getPrecio2Inmueble(), false) + " euros ( " + decimal.format(contrato.getPrecio2Inmueble()) + " € )", fuenteNegrita));
+            contenido.add(new Chunk(" en concepto de ", fuenteNormal));
+            contenido.add(new Chunk("arrendamiento ", fuenteNegrita));
+            contenido.add(new Chunk("del local de mi propiedad, situado en ", fuenteNormal));
+            contenido.add(new Chunk(inmueble.getNombreCalle() + " nº " + inmueble.getNumeroCalle(), fuenteNegrita));
+            contenido.add(new Chunk(" del término municipal de ", fuenteNormal));
+            contenido.add(new Chunk(inmueble.getLocalidad(), fuenteNegrita));
+            contenido.add(new Chunk(" correspondiente al mes de ", fuenteNormal));
+            contenido.add(new Chunk(Meses.getMes(fechaFactura.getMonthValue()) + " de " + fechaFactura.getYear()  + ".", fuenteNegrita));
         } else { // es una persona jurídica
-            contenido = new Paragraph("He recibido de " + arrendatario.getNombre() + " con NIF " + arrendatario.getDni() + " la "
-                    + "cantidad de " + NumeroEnTexto.convertirNumeroATextoDouble(contrato.getPrecio2Inmueble(), false) + " euros ( " + decimal.format(contrato.getPrecio2Inmueble()) + " € ) en concepto de arrendamiento del local de mi propiedad, situado "
-                    + "en " + inmueble.getNombreCalle() + " nº " + inmueble.getNumeroCalle() + ", del término municipal de " + inmueble.getLocalidad() + " correspondiente al mes de " + Meses.getMes(fechaFactura.getMonthValue()) + " de "
-                    + fechaFactura.getYear() + ".", FontFactory.getFont("arial", 12, Font.PLAIN, BaseColor.BLACK));
+            contenido.add(new Chunk("He recibido de ", fuenteNormal));
+            contenido.add(new Chunk(arrendatario.getNombre(), fuenteNegrita));
+            contenido.add(new Chunk(" con NIF ", fuenteNormal));
+            contenido.add(new Chunk(arrendatario.getDni(), fuenteNegrita));
+            contenido.add(new Chunk(" la cantidad de ", fuenteNormal));
+            contenido.add(new Chunk(NumeroEnTexto.convertirNumeroATextoDouble(contrato.getPrecio2Inmueble(), false) + " euros ( " + decimal.format(contrato.getPrecio2Inmueble()) + " € )", fuenteNegrita));
+            contenido.add(new Chunk(" en concepto de ", fuenteNormal));
+            contenido.add(new Chunk("arrendamiento ", fuenteNegrita));
+            contenido.add(new Chunk("del local de mi propiedad, situado en ", fuenteNormal));
+            contenido.add(new Chunk(inmueble.getNombreCalle() + " nº " + inmueble.getNumeroCalle(), fuenteNegrita));
+            contenido.add(new Chunk(" del término municipal de ", fuenteNormal));
+            contenido.add(new Chunk(inmueble.getLocalidad(), fuenteNegrita));
+            contenido.add(new Chunk(" correspondiente al mes de ", fuenteNormal));
+            contenido.add(new Chunk(Meses.getMes(fechaFactura.getMonthValue()) + " de " + fechaFactura.getYear()  + ".", fuenteNegrita));
         }
         contenido.setAlignment(Element.ALIGN_JUSTIFIED);
         documento.add(contenido);
