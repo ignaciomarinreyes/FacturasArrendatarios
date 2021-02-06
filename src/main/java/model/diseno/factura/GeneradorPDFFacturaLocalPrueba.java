@@ -62,10 +62,14 @@ public class GeneradorPDFFacturaLocalPrueba extends GeneradorPDFFactura {
         PdfPCell cell1t = new PdfPCell(new Phrase("ARRENDADOR"));
         cell1t.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
         cell1t.setPadding(5);
-        PdfPCell cell2t = new PdfPCell(new Phrase("Caridad Reyes Moséguez\n"
+        /*PdfPCell cell2t = new PdfPCell(new Phrase("Caridad Reyes Moséguez\n"
                 + "Avda.Polizón nº 24\n"
                 + "35118 Agüimes\n"
-                + "NIF 42883415F\n"));
+                + "NIF 42883415F\n"));*/
+        PdfPCell cell2t = new PdfPCell(new Phrase("Ignacio Marín Jiménez\n"
+                + "Avda. Polizón nº 24\n"
+                + "35118 Agüimes\n"
+                + "NIF 15909567F\n"));
         cell2t.setPadding(5);
         tablaArrendador.addCell(cell1t);
         tablaArrendador.addCell(cell2t);

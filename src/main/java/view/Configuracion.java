@@ -5,12 +5,14 @@ import persistence.DataBase;
 
 public class Configuracion extends javax.swing.JFrame {
 
+    private MainFrame2 mainFrame2;
     private MainFrame mainFrame;
     private model.Configuracion configuracion;
 
-    public Configuracion(MainFrame mainFrame) {
+    public Configuracion(MainFrame2 mainFrame2) {
         initComponents();
-        this.mainFrame = mainFrame;
+        this.mainFrame2 = mainFrame2;
+        this.mainFrame = mainFrame2.getMainFrame();
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -114,15 +116,15 @@ public class Configuracion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void volverjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverjButtonActionPerformed
-        mainFrame.setVisible(true);
+        mainFrame2.setVisible(true);
         dispose();
     }//GEN-LAST:event_volverjButtonActionPerformed
 
     private void aceptarjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarjButtonActionPerformed
         if (comprobarCampos()) {
             DataBase.updateConfiguracionSetIgicAndIrpfWhereIdConfiguracion(Float.parseFloat(irpfjTextField.getText()), Float.parseFloat(igicjTextField.getText()));
-            mainFrame.setVisible(true);
-            mainFrame.setConfiguracion(DataBase.selectConfiguracion());
+            this.mainFrame.setVisible(true);
+            this.mainFrame.setConfiguracion(DataBase.selectConfiguracion());
             dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Los valores deben de estar en tanto por uno y rellene los dos campos");

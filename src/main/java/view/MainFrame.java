@@ -339,7 +339,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         Archivo.add(jMenu2);
 
-        configuracionjMenuItem.setText("Configuración");
+        configuracionjMenuItem.setText("Ventana secundaria");
         configuracionjMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 configuracionjMenuItemActionPerformed(evt);
@@ -688,7 +688,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void configuracionjMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configuracionjMenuItemActionPerformed
         setVisible(false);
-        new view.Configuracion(this);
+        new MainFrame2(this);
     }//GEN-LAST:event_configuracionjMenuItemActionPerformed
 
     private void generarPDFFianzaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarPDFFianzaButtonActionPerformed
