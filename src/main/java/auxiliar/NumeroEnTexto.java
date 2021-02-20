@@ -16,12 +16,12 @@ public class NumeroEnTexto {
         "setecientos ", "ochocientos ", "novecientos "};
 
     public static String convertirNumeroATextoDouble(double number, boolean mayusculas) {
-        String num = String.format("%.2f", number);
-        if (num.indexOf(",") != -1) {
+        if(number % 1 == 0){
+            return convertir(String.valueOf((int) number), mayusculas);
+        } else{
+            String num = String.format("%.2f", number);
             return convertir(num.substring(0, num.indexOf(",")), mayusculas) + " con " + convertir(num.substring(num.indexOf(",") + 1), mayusculas);
-        } else {
-            return convertir(num, mayusculas);
-        }
+        }             
     }
 
     public static String convertirNumeroATextoEntero(int numero, boolean mayusculas) {
