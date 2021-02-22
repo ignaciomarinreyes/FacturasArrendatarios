@@ -33,11 +33,11 @@ view/MainFrame.class
 view/InformeCobros$1.class
 auxiliar/Meses.class
 model/modelosContrato/GeneradorPDFModeloContratoVivienda1.class
+model/Arrendador.class
 view/NuevoContrato$2.class
 view/NuevoArrendatario$2.class
 view/MainFrame$6.class
 model/TipoInmueble.class
-view/MainFrame2$4.class
 model/Arrendatario.class
 view/InicioDatosFacturaPrueba$1.class
 view/NuevoInmueble$3.class

@@ -7,14 +7,16 @@ public class Inmueble {
     private String numeroCalle = null;
     private String localidad = null;
     private String numeroInmueble = null;
-    private TipoInmueble tipoInmueble = null;
+    private String letraInmueble;
+    private TipoInmueble tipoInmueble = null;   
 
-    public Inmueble(int idInmueble, String nombreCalle, String numeroCalle, String localidad, String numeroInmueble, TipoInmueble tipoInmueble) {
+    public Inmueble(int idInmueble, String nombreCalle, String numeroCalle, String localidad, String numeroInmueble, String letraInmueble, TipoInmueble tipoInmueble) {
         this.idInmueble = idInmueble;
         this.nombreCalle = nombreCalle;
         this.numeroCalle = numeroCalle;
         this.localidad = localidad;
         this.numeroInmueble = numeroInmueble;
+        this.letraInmueble = letraInmueble;
         this.tipoInmueble = tipoInmueble;
     }
 
@@ -44,6 +46,10 @@ public class Inmueble {
 
     public TipoInmueble getTipoInmueble() {
         return tipoInmueble;
+    }
+    
+    public String getLetraInmueble() {
+        return letraInmueble;
     }
 
     @Override

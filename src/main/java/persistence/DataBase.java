@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Arrendador;
 import model.Arrendatario;
 import model.Cobro;
 import model.Contrato;
@@ -81,7 +82,7 @@ public class DataBase {
             st.setString(1, dniArrendatario);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                array.add(new Inmueble(rs.getInt("idInmueble"), rs.getString("nombreCalle"), rs.getString("numeroCalle"), rs.getString("localidad"), rs.getString("numeroInmueble"), TipoInmueble.valueOf(rs.getString("tipoInmueble"))));
+                array.add(new Inmueble(rs.getInt("idInmueble"), rs.getString("nombreCalle"), rs.getString("numeroCalle"), rs.getString("localidad"), rs.getString("numeroInmueble"), rs.getString("letraInmueble"), TipoInmueble.valueOf(rs.getString("tipoInmueble"))));
             }
             rs.close();
         } catch (SQLException e) {
@@ -98,7 +99,46 @@ public class DataBase {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from arrendatario");
             while (rs.next()) {
-                array.add(new Arrendatario(rs.getString("dni"), rs.getString("nombre"), rs.getString("apellidos")));
+                array.add(new Arrendatario(rs.getString("dni"), rs.getString("nombre"), rs.getString("apellidos"), rs.getString("nacionalidad"), rs.getString("nombreCalle"),rs.getString("numeroCalle"),rs.getString("localidad"),rs.getString("municipio")));
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection(con);
+        return array;
+    }
+    
+    public static Arrendador selectArrendadorByIdArrendador(int idArrendador) {
+        Connection con = getConnection();
+        Arrendador arrendador = null;
+        try {
+            PreparedStatement st = con.prepareStatement("select * from arrendador where idArrendador = ?");
+            st.setInt(1, idArrendador);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                arrendador = new Arrendador(rs.getInt("idArrendador"), rs.getString("nombre"), rs.getString("apellidos"), rs.getString("nacionalidad"),
+                rs.getString("nombreCalle"), rs.getString("numeroCalle"), rs.getString("localidad"), rs.getString("municipio"), rs.getString("dni"),
+                rs.getString("email"), rs.getString("codigoPostal"));
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection(con);
+        return arrendador;
+    }
+    
+    public static ArrayList<Arrendador> selectAllArrendadores() {
+        Connection con = getConnection();
+        ArrayList<Arrendador> array = new ArrayList<Arrendador>();
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select * from arrendador");
+            while (rs.next()) {
+                array.add(new Arrendador(rs.getInt("idArrendador"), rs.getString("nombre"), rs.getString("apellidos"), rs.getString("nacionalidad"),
+                rs.getString("nombreCalle"), rs.getString("numeroCalle"), rs.getString("localidad"), rs.getString("municipio"), rs.getString("dni"),
+                rs.getString("email"), rs.getString("codigoPostal")));
             }
             rs.close();
         } catch (SQLException e) {
@@ -170,7 +210,7 @@ public class DataBase {
             st.setInt(2, idInmueble);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                contrato = new Contrato(rs.getInt("idContrato"), rs.getString("dniArrendatario"), rs.getInt("idInmueble"), rs.getInt("duracionContrato"), rs.getDouble("precio1Inmueble"), rs.getDouble("precio2Inmueble"));
+                contrato = new Contrato(rs.getInt("idContrato"), rs.getString("dniArrendatario"), rs.getInt("idInmueble"), rs.getInt("duracionContrato"), rs.getDouble("precio1Inmueble"), rs.getDouble("precio2Inmueble"), rs.getInt("idArrendador"));
             }
             rs.close();
         } catch (SQLException e) {
@@ -260,7 +300,7 @@ public class DataBase {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from inmueble");
             while (rs.next()) {
-                array.add(new Inmueble(rs.getInt("idInmueble"), rs.getString("nombreCalle"), rs.getString("numeroCalle"), rs.getString("localidad"), rs.getString("numeroInmueble"), TipoInmueble.valueOf(rs.getString("tipoInmueble"))));
+                array.add(new Inmueble(rs.getInt("idInmueble"), rs.getString("nombreCalle"), rs.getString("numeroCalle"), rs.getString("localidad"), rs.getString("numeroInmueble"),rs.getString("letraInmueble"), TipoInmueble.valueOf(rs.getString("tipoInmueble"))));
             }
             rs.close();
         } catch (SQLException e) {
@@ -290,7 +330,7 @@ public class DataBase {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from inmueble where idInmueble NOT IN (SELECT idInmueble FROM contrato)");
             while (rs.next()) {
-                inmuebles.add(new Inmueble(rs.getInt("idInmueble"), rs.getString("nombreCalle"), rs.getString("numeroCalle"), rs.getString("localidad"), rs.getString("numeroInmueble"), TipoInmueble.valueOf(rs.getString("tipoInmueble"))));
+                inmuebles.add(new Inmueble(rs.getInt("idInmueble"), rs.getString("nombreCalle"), rs.getString("numeroCalle"), rs.getString("localidad"), rs.getString("numeroInmueble"), rs.getString("letraInmueble"), TipoInmueble.valueOf(rs.getString("tipoInmueble"))));
             }
             rs.close();
         } catch (SQLException e) {
@@ -300,15 +340,16 @@ public class DataBase {
         return inmuebles;
     }
 
-    public static void insertContrato(String dni, int idInmueble, int duracionContrato, double precio1, double precio2) {
+    public static void insertContrato(String dni, int idInmueble, int duracionContrato, double precio1, double precio2, int idArrendador) {
         Connection con = getConnection();
         try {
-            PreparedStatement st = con.prepareStatement("INSERT INTO contrato (dniArrendatario, idInmueble, duracionContrato, precio1Inmueble, precio2Inmueble) VALUES (?,?,?, ?, ?)");
+            PreparedStatement st = con.prepareStatement("INSERT INTO contrato (dniArrendatario, idInmueble, duracionContrato, precio1Inmueble, precio2Inmueble, idArrendador) VALUES (?,?,?, ?, ?, ?)");
             st.setString(1, dni);
             st.setInt(2, idInmueble);
             st.setInt(3, duracionContrato);
             st.setDouble(4, precio1);
             st.setDouble(5, precio2);
+            st.setInt(6, idArrendador);
             st.executeUpdate();
             st.close();
         } catch (SQLException e) {

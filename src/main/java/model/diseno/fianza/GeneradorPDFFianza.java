@@ -10,20 +10,24 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
+import model.Arrendador;
 import model.Arrendatario;
 import model.Contrato;
 import model.Inmueble;
+import static persistence.DataBase.selectArrendadorByIdArrendador;
 
 public abstract class GeneradorPDFFianza {
 
     protected final Arrendatario arrendatario;
     protected final Inmueble inmueble;
     protected final Contrato contrato;
+    protected Arrendador arrendador;
 
     public GeneradorPDFFianza(Arrendatario arrendatario, Inmueble inmueble, Contrato contrato) {
         this.arrendatario = arrendatario;
         this.inmueble = inmueble;
         this.contrato = contrato;
+        this.arrendador = selectArrendadorByIdArrendador(contrato.getIdArrendador());
     }
 
     public void crearPDF(int numeroMeses, LocalDate fechaFianza) {

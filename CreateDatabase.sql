@@ -63,3 +63,29 @@ CREATE TABLE configuracion(
     irpf float,
     igic float
 );
+
+CREATE TABLE arrendador(
+	idArrendador int PRIMARY KEY AUTO_INCREMENT,
+	nombre VARCHAR(60) NOT NULL,
+	apellidos VARCHAR(60) NOT NULL,
+	nacionalidad VARCHAR(60) NOT NULL,
+	nombreCalle VARCHAR(60) NOT NULL,
+	numeroCalle VARCHAR(60) NOT NULL,
+	localidad VARCHAR(60) NOT NULL,
+	municipio VARCHAR(60) NOT NULL,
+	dni VARCHAR(9) NOT NULL,
+	email VARCHAR(60) NOT NULL
+);
+
+ALTER TABLE inmueble ADD COLUMN letraInmueble VARCHAR(4);
+
+ALTER TABLE arrendatario ADD COLUMN nacionalidad VARCHAR(20) NOT NULL;
+ALTER TABLE arrendatario ADD COLUMN nombreCalle VARCHAR(20) NOT NULL;
+ALTER TABLE arrendatario ADD COLUMN numeroCalle VARCHAR(10) NOT NULL;
+ALTER TABLE arrendatario ADD COLUMN localidad VARCHAR(20) NOT NULL;
+ALTER TABLE arrendatario ADD COLUMN municipio VARCHAR(20) NOT NULL;
+
+ALTER TABLE contrato ADD COLUMN idArrendador int NOT NULL;
+ALTER TABLE contrato ADD FOREIGN KEY (idArrendador) REFERENCES arrendador(idArrendador) ON DELETE CASCADE;
+
+ALTER TABLE arrendador ADD COLUMN codigoPostal VARCHAR(5) NOT NULL;

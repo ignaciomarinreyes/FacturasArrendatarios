@@ -42,25 +42,25 @@ public class GeneradorPDFModeloContratoVivienda1 extends GeneradorPDFModeloContr
         absText(Meses.getMes(hoy.getMonthValue()).toUpperCase(), 368.5037F, 629.62165F); 
         absText("" + hoy.getYear(), 496.88946F, 629.62165F);
         
-        absText("CARIDAD REYES MOSEGUEZ", 204.09436F, 538.58234F); 
-        absText("ESPAÑOLA", 184.25185F, 526.07841F); 
-        absText("AVDA. POLIZON, 24", 414.51943F, 526.07841F);
-        absText("ARINAGA", 170.07863F, 515.90519F);
-        absText("AGÜIMES", 368.5037F, 515.90519F);
-        absText("42883415F", 198.42507F, 503.56661F); 
+        absText(arrendador.getNombre().toUpperCase() + " " + arrendador.getApellidos().toUpperCase(), 204.09436F, 538.58234F); 
+        absText(arrendador.getNacionalidad().toUpperCase(), 184.25185F, 526.07841F); 
+        absText(arrendador.getNombreCalle().toUpperCase() + ", " + arrendador.getNumeroCalle().toUpperCase(), 414.51943F, 526.07841F);
+        absText(arrendador.getLocalidad().toUpperCase(), 170.07863F, 515.90519F);
+        absText(arrendador.getMunicipio().toUpperCase(), 368.5037F, 515.90519F);
+        absText(arrendador.getDni().toUpperCase(), 198.42507F, 503.56661F); 
         absText("- - - - -", 496.06268F, 503.56661F); 
-        absText("CARIDADMOSEGUEZ@GMAIL.COM", 283.4643884F, 490.0626796F);
+        absText(arrendador.getEmail().toUpperCase(), 283.4643884F, 490.0626796F);
         
-        absText(arrendatario.getNombre().toUpperCase() + arrendatario.getApellidos().toUpperCase(), 212.5982913F, 372.6769243F); 
-        absText("ESPAÑOLA", 184.2518524F, 358.5037049F); 
-        absText("C. JUAN DE CARDONA, 6", 402.5194315F, 358.5037049F);
-        absText("ARINAGA", 170.078633F, 347.1651293F);
-        absText("AGÜIMES", 368.5037049F, 347.1651293F);
+        absText(arrendatario.getNombre().toUpperCase() + " " + arrendatario.getApellidos().toUpperCase(), 212.5982913F, 372.6769243F); 
+        absText(arrendatario.getNacionalidad().toUpperCase(), 184.2518524F, 358.5037049F); 
+        absText(arrendatario.getNombreCalle().toUpperCase() + ", " + arrendatario.getNumeroCalle().toUpperCase(), 402.5194315F, 358.5037049F);
+        absText(arrendatario.getNacionalidad().toUpperCase(), 170.078633F, 347.1651293F);
+        absText(arrendatario.getMunicipio().toUpperCase(), 368.5037049F, 347.1651293F);
         absText(arrendatario.getDni().toUpperCase(), 198.4250719F, 334.8265538F);
         absText("- - - - -", 496.0626796F, 334.8265538F);
         
-        absText(inmueble.getNumeroInmueble() + " ª", 425.1965826F, 41.70074098F);
-        absText("A", 536.4091185F, 41.70074098F);
+        absText(inmueble.getNumeroInmueble().toUpperCase() + " ª", 425.1965826F, 41.70074098F);
+        absText(inmueble.getLetraInmueble() != null ? inmueble.getLetraInmueble().toUpperCase(): "", 536.4091185F, 41.70074098F);
         absText(inmueble.getNombreCalle().toUpperCase(), 340.157266F, 30.36216544F);
         absText(inmueble.getNumeroCalle(), 311.8108272F, 15.85823379F);
         absText(inmueble.getLocalidad().toUpperCase(), 437.1965826F, 15.85823379F);

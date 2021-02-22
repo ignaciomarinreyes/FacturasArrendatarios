@@ -16,8 +16,10 @@ import model.Arrendatario;
 import model.Configuracion;
 import model.Contrato;
 import model.Inmueble;
+import model.Arrendador;
 import org.apache.pdfbox.exceptions.COSVisitorException;
 import org.apache.pdfbox.util.PDFMergerUtility;
+import static persistence.DataBase.selectArrendadorByIdArrendador;
 
 
 public abstract class GeneradorPDFFactura {
@@ -27,6 +29,7 @@ public abstract class GeneradorPDFFactura {
     protected final Contrato contrato;
     protected Configuracion configuracion;
     protected Boolean prueba;
+    protected Arrendador arrendador;
 
     public GeneradorPDFFactura(Arrendatario arrendatario, Inmueble inmueble, Contrato contrato, Configuracion configuracion, Boolean version) {
         this.arrendatario = arrendatario;
@@ -34,6 +37,7 @@ public abstract class GeneradorPDFFactura {
         this.contrato = contrato;
         this.configuracion = configuracion;
         this.prueba = version;
+        this.arrendador = selectArrendadorByIdArrendador(contrato.getIdArrendador());
     }
 
     public String crearPDF(int numeroFactura, LocalDate fechaFactura) {

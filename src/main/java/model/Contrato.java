@@ -8,20 +8,22 @@ public class Contrato {
     private int duracionContrato = 0;
     private double precio1Inmueble = 0;
     private double precio2Inmueble = 0;
-
+    private int idArrendador;
+          
     private String nombreCalle = null;
     private String numeroCalle = null;
     private String numeroInmueble = null;
     private String nombreArrendatario = null;
     private String appellidosArrendatario = null;
 
-    public Contrato(int idContrato, String dniArrendatario, int idInmueble, int duracionContrato, double precio1, double precio2) {
+    public Contrato(int idContrato, String dniArrendatario, int idInmueble, int duracionContrato, double precio1, double precio2, int idArrendador) {
         this.idContrato = idContrato;
         this.dniArrendatario = dniArrendatario;
         this.idInmueble = idInmueble;
         this.duracionContrato = duracionContrato;
         this.precio1Inmueble = precio1;
         this.precio2Inmueble = precio2;
+        this.idArrendador = idArrendador;
     }
 
     public Contrato(int idContrato, String nombreArrendatario, String appellidosArrendatario, String nombreCalle, String numeroCalle, String numeroInmueble) {
@@ -51,6 +53,10 @@ public class Contrato {
 
     public int getIdContrato() {
         return idContrato;
+    }
+
+    public int getIdArrendador() {
+        return idArrendador;
     }
 
     @Override

@@ -32,7 +32,6 @@ public class MainFrame2 extends javax.swing.JFrame {
     private void initComponents() {
 
         taxjButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         modelosContratojButton = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
@@ -42,13 +41,6 @@ public class MainFrame2 extends javax.swing.JFrame {
         taxjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 taxjButtonActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Cambiar usuario");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
             }
         });
 
@@ -73,28 +65,24 @@ public class MainFrame2 extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(0, 29, Short.MAX_VALUE)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(modelosContratojButton)
-                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                                    .add(jButton2)
-                                    .add(33, 33, 33))
-                                .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                                    .add(taxjButton)
-                                    .add(49, 49, 49)))))
                     .add(layout.createSequentialGroup()
                         .add(jButton4)
-                        .add(0, 0, Short.MAX_VALUE))))
+                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(0, 23, Short.MAX_VALUE)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                .add(taxjButton)
+                                .add(49, 49, 49))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                .add(modelosContratojButton)
+                                .add(29, 29, 29))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(taxjButton)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jButton2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(modelosContratojButton)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
@@ -109,10 +97,6 @@ public class MainFrame2 extends javax.swing.JFrame {
         setVisible(false);
         new view.Configuracion(this);
     }//GEN-LAST:event_taxjButtonActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void modelosContratojButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modelosContratojButtonActionPerformed
         setVisible(false);
@@ -129,7 +113,6 @@ public class MainFrame2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton modelosContratojButton;
     private javax.swing.JButton taxjButton;

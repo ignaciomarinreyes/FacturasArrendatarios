@@ -13,15 +13,18 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import model.Arrendador;
 import model.Arrendatario;
 import model.Contrato;
 import model.Inmueble;
+import static persistence.DataBase.selectArrendadorByIdArrendador;
 
 
 public abstract class GeneradorPDFModeloContrato {
     protected final Arrendatario arrendatario;
     protected final Inmueble inmueble;
     protected final Contrato contrato;
+    protected Arrendador arrendador;
     protected com.itextpdf.text.Document documento;
     protected int numeroModel;
     protected PdfWriter pdfWriter;
@@ -31,6 +34,7 @@ public abstract class GeneradorPDFModeloContrato {
         this.inmueble = inmueble;
         this.contrato = contrato;
         this.numeroModel = numeroModel;
+        this.arrendador = selectArrendadorByIdArrendador(contrato.getIdArrendador());
     }
 
     public void crearPDF() {
