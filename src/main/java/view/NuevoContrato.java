@@ -9,6 +9,7 @@ import model.Arrendatario;
 import model.Inmueble;
 import model.Arrendador;
 import persistence.DataBase;
+import javax.swing.JOptionPane;
 
 public class NuevoContrato extends javax.swing.JFrame {
    
@@ -182,7 +183,11 @@ public class NuevoContrato extends javax.swing.JFrame {
         Inmueble inmueble = (Inmueble) inmueblesjComboBox.getSelectedItem();
         if (comprobarCampos()) {
             Arrendador arrendador = (Arrendador) arrendadorjComboBox.getSelectedItem();
-            DataBase.insertContrato(arrendatario.getDni(), inmueble.getIdInmueble(), (Integer) duracionContratojSpinner.getValue(), Double.parseDouble(precioNormalInmueblejTextField.getText()), Double.parseDouble(precioPruebaInmueblejTextField.getText()), arrendador.getIdArrendador());
+            if(DataBase.insertContrato(arrendatario.getDni(), inmueble.getIdInmueble(), (Integer) duracionContratojSpinner.getValue(), Double.parseDouble(precioNormalInmueblejTextField.getText()), Double.parseDouble(precioPruebaInmueblejTextField.getText()), arrendador.getIdArrendador())){
+                JOptionPane.showMessageDialog(null, "La operación se realizó con éxito");
+            } else{
+                JOptionPane.showMessageDialog(null, "Se produjo un error");   
+            }
             resetearCampos();
             rellenarInmueblesComboBox(DataBase.selectInmuebleByIdInmuebleNotInContrato());
         } else {

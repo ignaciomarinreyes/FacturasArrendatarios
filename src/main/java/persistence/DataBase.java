@@ -220,33 +220,46 @@ public class DataBase {
         return contrato;
     }
 
-    public static void insertArrendatario(String tipoPersona, String dni, String nombre, String apellidos) {
+    public static boolean insertArrendatario(String tipoPersona, String dni, String nombre, String apellidos, String nacionalidad, String nombreCalle, String numeroCalle, String localidad, String municipio) {
         Connection con = getConnection();
         if (tipoPersona.equals("Física")) {
             try {
-                PreparedStatement st = con.prepareStatement("INSERT INTO arrendatario (dni, nombre, apellidos) VALUES (?,?,?)");
+                PreparedStatement st = con.prepareStatement("INSERT INTO arrendatario (dni, nombre, apellidos, nacionalidad, nombreCalle, numeroCalle, localidad, municipio) VALUES (?,?,?, ?, ?, ?, ?, ?)");
                 st.setString(1, dni);
                 st.setString(2, nombre);
                 st.setString(3, apellidos);
+                st.setString(4, nacionalidad);
+                st.setString(5, nombreCalle);
+                st.setString(6, numeroCalle);
+                st.setString(7, localidad);
+                st.setString(8, municipio);
                 st.executeUpdate();
                 st.close();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Ya existe un arrendatario con esos datos");
                 e.printStackTrace();
+                return false;
             }
         } else {
             try {
-                PreparedStatement st = con.prepareStatement("INSERT INTO arrendatario (dni, nombre) VALUES (?,?)");
+                PreparedStatement st = con.prepareStatement("INSERT INTO arrendatario (dni, nombre, nacionalidad, nombreCalle, numeroCalle, localidad, municipio) VALUES (?,?,?, ?, ?, ?, ?)");
                 st.setString(1, dni);
                 st.setString(2, nombre);
+                st.setString(3, nacionalidad);
+                st.setString(4, nombreCalle);
+                st.setString(5, numeroCalle);
+                st.setString(6, localidad);
+                st.setString(7, municipio);
                 st.executeUpdate();
                 st.close();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Ya existe un arrendatario con esos datos");
                 e.printStackTrace();
+                return false;
             }
         }
         closeConnection(con);
+        return true;
     }
 
     public static void deleteArrendatarioByDni(String dni) {
@@ -262,7 +275,7 @@ public class DataBase {
         closeConnection(con);
     }
 
-    public static void insertInmueble(String nombreCalle, String numeroCalle, String localidad, String numeroInmueble, TipoInmueble tipoInmueble) {
+    public static boolean insertInmueble(String nombreCalle, String numeroCalle, String localidad, String numeroInmueble, TipoInmueble tipoInmueble, String letraInmueble) {
         Connection con = getConnection();
         if (tipoInmueble.equals(tipoInmueble.LOCAL)) {
             try {
@@ -275,10 +288,11 @@ public class DataBase {
                 st.close();
             } catch (SQLException e) {
                 e.printStackTrace();
+                return false;
             }
-        } else {
+        } else if(tipoInmueble.equals(tipoInmueble.APARCAMIENTO)){
             try {
-                PreparedStatement st = con.prepareStatement("INSERT INTO inmueble (nombreCalle, numeroCalle, localidad, numeroInmueble, tipoInmueble) VALUES (?,?,?, ?, ?)");
+                PreparedStatement st = con.prepareStatement("INSERT INTO inmueble (nombreCalle, numeroCalle, localidad, numeroInmueble, tipoInmueble) VALUES (?,?,?, ?,?)");
                 st.setString(1, nombreCalle);
                 st.setString(2, numeroCalle);
                 st.setString(3, localidad);
@@ -288,9 +302,26 @@ public class DataBase {
                 st.close();
             } catch (SQLException e) {
                 e.printStackTrace();
+                return false;
+            }
+        } else {
+            try {
+                PreparedStatement st = con.prepareStatement("INSERT INTO inmueble (nombreCalle, numeroCalle, localidad, numeroInmueble, tipoInmueble, letraInmueble) VALUES (?,?,?, ?, ?, ?)");
+                st.setString(1, nombreCalle);
+                st.setString(2, numeroCalle);
+                st.setString(3, localidad);
+                st.setString(4, numeroInmueble);
+                st.setString(5, tipoInmueble.toString());
+                st.setString(6, letraInmueble);
+                st.executeUpdate();
+                st.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
             }
         }
         closeConnection(con);
+        return true;
     }
 
     public static ArrayList<Inmueble> selectAllInmuebles() {
@@ -340,7 +371,7 @@ public class DataBase {
         return inmuebles;
     }
 
-    public static void insertContrato(String dni, int idInmueble, int duracionContrato, double precio1, double precio2, int idArrendador) {
+    public static boolean insertContrato(String dni, int idInmueble, int duracionContrato, double precio1, double precio2, int idArrendador) {
         Connection con = getConnection();
         try {
             PreparedStatement st = con.prepareStatement("INSERT INTO contrato (dniArrendatario, idInmueble, duracionContrato, precio1Inmueble, precio2Inmueble, idArrendador) VALUES (?,?,?, ?, ?, ?)");
@@ -354,8 +385,10 @@ public class DataBase {
             st.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
         closeConnection(con);
+        return true;
     }
 
     public static ArrayList<Contrato> selectAllContratosJoinArrendatariosJoinInmueble() {

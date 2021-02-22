@@ -59,7 +59,7 @@ public class GeneradorPDFModeloContratoVivienda1 extends GeneradorPDFModeloContr
         absText(arrendatario.getDni().toUpperCase(), 198.4250719F, 334.8265538F);
         absText("- - - - -", 496.0626796F, 334.8265538F);
         
-        absText(inmueble.getNumeroInmueble().toUpperCase() + " ª", 425.1965826F, 41.70074098F);
+        absText(inmueble.getNumeroInmueble() != null ? inmueble.getNumeroInmueble().toUpperCase() + " ª": "", 425.1965826F, 41.70074098F);
         absText(inmueble.getLetraInmueble() != null ? inmueble.getLetraInmueble().toUpperCase(): "", 536.4091185F, 41.70074098F);
         absText(inmueble.getNombreCalle().toUpperCase(), 340.157266F, 30.36216544F);
         absText(inmueble.getNumeroCalle(), 311.8108272F, 15.85823379F);

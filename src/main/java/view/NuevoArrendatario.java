@@ -1,8 +1,10 @@
+
 package view;
 
 import java.awt.event.ItemEvent;
 import javax.swing.DefaultComboBoxModel;
 import persistence.DataBase;
+import javax.swing.JOptionPane;
 
 public class NuevoArrendatario extends javax.swing.JFrame {
 
@@ -12,52 +14,55 @@ public class NuevoArrendatario extends javax.swing.JFrame {
         initComponents();
         this.mainFrame = mainFrame;
         rellenarTipoPersonajComboBox();
+        rellenarTipoCalleJComboBox();
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
     }
 
+  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        NIFjLabel = new javax.swing.JLabel();
-        nombrejLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         apellidosjLabel = new javax.swing.JLabel();
+        tipoPersonajComboBox = new javax.swing.JComboBox<>();
         dniTextField = new javax.swing.JTextField();
         nombreTextField = new javax.swing.JTextField();
         apellidosTextField = new javax.swing.JTextField();
-        aceptarButton = new javax.swing.JButton();
         volverButton = new javax.swing.JButton();
-        tipoPersonajComboBox = new javax.swing.JComboBox<>();
-        tipojLabel = new javax.swing.JLabel();
+        aceptarButton = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        nacionalidadjTextField = new javax.swing.JTextField();
+        nombreCallejTextField = new javax.swing.JTextField();
+        numeroCallejTextField = new javax.swing.JTextField();
+        localidadjTextField = new javax.swing.JTextField();
+        municipiojTextField = new javax.swing.JTextField();
+        tipoCalleJComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        NIFjLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        NIFjLabel.setText("NIF");
+        jLabel1.setText("Persona");
 
-        nombrejLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        nombrejLabel.setText("Nombre");
+        jLabel2.setText("NIF");
 
-        apellidosjLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel3.setText("Nombre");
+
         apellidosjLabel.setText("Apellidos");
 
-        dniTextField.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-
-        nombreTextField.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-
-        apellidosTextField.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-
-        aceptarButton.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        aceptarButton.setText("Aceptar");
-        aceptarButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aceptarButtonActionPerformed(evt);
+        tipoPersonajComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                tipoPersonajComboBoxItemStateChanged(evt);
             }
         });
 
-        volverButton.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         volverButton.setText("Volver");
         volverButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,79 +70,124 @@ public class NuevoArrendatario extends javax.swing.JFrame {
             }
         });
 
-        tipoPersonajComboBox.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        tipoPersonajComboBox.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                tipoPersonajComboBoxItemStateChanged(evt);
+        aceptarButton.setText("Aceptar");
+        aceptarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarButtonActionPerformed(evt);
             }
         });
 
-        tipojLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        tipojLabel.setText("Persona");
+        jLabel5.setText("Nacionalidad");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        jLabel6.setText("Nombre");
+
+        jLabel7.setText("Número");
+
+        jLabel8.setText("Localidad");
+
+        jLabel9.setText("Municipio");
+
+        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(nombrejLabel)
-                            .addGap(24, 24, 24))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(apellidosjLabel)
-                            .addGap(15, 15, 15)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(NIFjLabel)
-                            .addComponent(tipojLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(dniTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(volverButton)
-                            .addGap(18, 18, 18)
-                            .addComponent(aceptarButton))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(apellidosTextField)
-                            .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(tipoPersonajComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(21, Short.MAX_VALUE))
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .add(17, 17, 17)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jLabel1)
+                            .add(jLabel2))
+                        .add(42, 42, 42)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(dniTextField)
+                            .add(tipoPersonajComboBox, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jLabel3)
+                            .add(apellidosjLabel)
+                            .add(jLabel7)
+                            .add(jLabel6)
+                            .add(jLabel5)
+                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                .add(jLabel8)
+                                .add(jLabel9)))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(nombreTextField)
+                            .add(apellidosTextField)
+                            .add(numeroCallejTextField)
+                            .add(nacionalidadjTextField)
+                            .add(localidadjTextField)
+                            .add(municipiojTextField)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                .add(tipoCalleJComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 129, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(nombreCallejTextField)))))
+                .addContainerGap())
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(255, Short.MAX_VALUE)
+                .add(volverButton)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(aceptarButton)
+                .add(14, 14, 14))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tipoPersonajComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tipojLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NIFjLabel)
-                    .addComponent(dniTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombrejLabel)
-                    .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(apellidosjLabel)
-                    .addComponent(apellidosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(aceptarButton)
-                    .addComponent(volverButton))
-                .addGap(21, 21, 21))
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .add(24, 24, 24)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(tipoPersonajComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel1))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(dniTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel2))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(nombreTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel3))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(apellidosjLabel)
+                    .add(apellidosTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel5)
+                    .add(nacionalidadjTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(nombreCallejTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel6)
+                    .add(tipoCalleJComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(numeroCallejTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel7))
+                .add(7, 7, 7)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(localidadjTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel8))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jLabel9)
+                    .add(municipiojTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 17, Short.MAX_VALUE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(volverButton)
+                    .add(aceptarButton))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void aceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButtonActionPerformed
-        DataBase.insertArrendatario((String) tipoPersonajComboBox.getSelectedItem(), dniTextField.getText(), nombreTextField.getText(), apellidosTextField.getText());
+        if(DataBase.insertArrendatario((String) tipoPersonajComboBox.getSelectedItem(), dniTextField.getText(), nombreTextField.getText(), apellidosTextField.getText(), nacionalidadjTextField.getText() , tipoCalleJComboBox.getSelectedItem().toString() + " " + nombreCallejTextField.getText(), numeroCallejTextField.getText(), localidadjTextField.getText(), municipiojTextField.getText())){
+            JOptionPane.showMessageDialog(null, "La operación se realizó con éxito");  
+        }else{
+            JOptionPane.showMessageDialog(null, "Se produjo un error");   
+        }
         mainFrame.rellenarArrendatarioComboBox(DataBase.selectAllArendatarios());
         limpiarTextFields();
     }//GEN-LAST:event_aceptarButtonActionPerformed
@@ -158,23 +208,15 @@ public class NuevoArrendatario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tipoPersonajComboBoxItemStateChanged
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel NIFjLabel;
-    private javax.swing.JButton aceptarButton;
-    private javax.swing.JTextField apellidosTextField;
-    private javax.swing.JLabel apellidosjLabel;
-    private javax.swing.JTextField dniTextField;
-    private javax.swing.JTextField nombreTextField;
-    private javax.swing.JLabel nombrejLabel;
-    private javax.swing.JComboBox<String> tipoPersonajComboBox;
-    private javax.swing.JLabel tipojLabel;
-    private javax.swing.JButton volverButton;
-    // End of variables declaration//GEN-END:variables
-
     private void limpiarTextFields() {
         dniTextField.setText("");
         nombreTextField.setText("");
         apellidosTextField.setText("");
+        nacionalidadjTextField.setText("");
+        nombreCallejTextField.setText("");
+        numeroCallejTextField.setText("");
+        localidadjTextField.setText("");
+        municipiojTextField.setText("");
     }
 
     private void rellenarTipoPersonajComboBox() {
@@ -195,4 +237,37 @@ public class NuevoArrendatario extends javax.swing.JFrame {
         apellidosTextField.setVisible(false);
         pack();
     }
+    
+    private void rellenarTipoCalleJComboBox() {
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.addElement("avd.");
+        model.addElement("c.");
+        tipoCalleJComboBox.setModel(model);
+    }
+   
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton aceptarButton;
+    private javax.swing.JTextField apellidosTextField;
+    private javax.swing.JLabel apellidosjLabel;
+    private javax.swing.JTextField dniTextField;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField localidadjTextField;
+    private javax.swing.JTextField municipiojTextField;
+    private javax.swing.JTextField nacionalidadjTextField;
+    private javax.swing.JTextField nombreCallejTextField;
+    private javax.swing.JTextField nombreTextField;
+    private javax.swing.JTextField numeroCallejTextField;
+    private javax.swing.JComboBox<String> tipoCalleJComboBox;
+    private javax.swing.JComboBox<String> tipoPersonajComboBox;
+    private javax.swing.JButton volverButton;
+    // End of variables declaration//GEN-END:variables
+
 }
