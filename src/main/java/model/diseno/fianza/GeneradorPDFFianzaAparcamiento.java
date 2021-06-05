@@ -84,7 +84,7 @@ public class GeneradorPDFFianzaAparcamiento extends GeneradorPDFFianza {
             contenido.add(new Chunk("fianza ", fuenteNegrita));
             contenido.add(new Chunk("correspondiente a " + duracionFianza(numeroMeses), fuenteNormal));
             contenido.add(new Chunk(" del aparcamiento de mi propiedad, situado en ", fuenteNormal));
-            contenido.add(new Chunk(inmueble.getNombreCalle() + " nº " + inmueble.getNumeroCalle(), fuenteNegrita));
+            contenido.add(new Chunk(inmueble.getNombreCalle() + " nº " + inmueble.getNumeroCalle() + " " + inmueble.getNumeroInmueble(), fuenteNegrita));
             contenido.add(new Chunk(" del término municipal de ", fuenteNormal));
             contenido.add(new Chunk(inmueble.getLocalidad(), fuenteNegrita));
             contenido.add(new Chunk(" correspondiente al mes de ", fuenteNormal));
@@ -100,7 +100,7 @@ public class GeneradorPDFFianzaAparcamiento extends GeneradorPDFFianza {
              contenido.add(new Chunk("fianza ", fuenteNegrita));
             contenido.add(new Chunk("correspondiente a " + duracionFianza(numeroMeses), fuenteNormal));
             contenido.add(new Chunk("del aparcamiento de mi propiedad, situado en ", fuenteNormal));
-            contenido.add(new Chunk(inmueble.getNombreCalle() + " nº " + inmueble.getNumeroCalle(), fuenteNegrita));
+            contenido.add(new Chunk(inmueble.getNombreCalle() + " nº " + inmueble.getNumeroCalle()+ " " + inmueble.getNumeroInmueble(), fuenteNegrita));
             contenido.add(new Chunk(" del término municipal de ", fuenteNormal));
             contenido.add(new Chunk(inmueble.getLocalidad(), fuenteNegrita));
             contenido.add(new Chunk(" correspondiente al mes de ", fuenteNormal));
