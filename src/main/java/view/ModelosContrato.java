@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package view;
 
 import model.Arrendatario;
@@ -14,13 +8,10 @@ import java.awt.event.ItemEvent;
 import persistence.DataBase;
 import javax.swing.DefaultComboBoxModel;
 import model.TipoInmueble;
-import java.awt.event.ActionEvent;
 import model.modelosContrato.GeneradorPDFModeloContratoVivienda1;
 import javax.swing.JOptionPane;
-/**
- *
- * @author ignacio
- */
+import model.modelosContrato.GeneradorPDFModeloContratoAparcamiento1;
+
 public class ModelosContrato extends javax.swing.JFrame {
     
     private Arrendatario arrendatario;
@@ -29,7 +20,7 @@ public class ModelosContrato extends javax.swing.JFrame {
     private MainFrame2 mainFrame2;
     private TipoInmueble typeInmueble;
     private int numeroModel;
-    /** Creates new form ModelosContrato */
+
     public ModelosContrato(MainFrame2 mainFrame2) {
         initComponents();
         this.mainFrame2 = mainFrame2;
@@ -37,7 +28,6 @@ public class ModelosContrato extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         rellenarArrendatarioComboBox(DataBase.selectAllArendatarios());
-        rellenarTypeModelComboBox();
         typeInmueble = TipoInmueble.VIVIENDA;
         rellenarNumberModeljComboBox();
         numeroModel = 1;
@@ -50,7 +40,6 @@ public class ModelosContrato extends javax.swing.JFrame {
 
         ArrendatarioComboBox = new javax.swing.JComboBox<>();
         InmuebleComboBox = new javax.swing.JComboBox<>();
-        typeModeljComboBox = new javax.swing.JComboBox<>();
         numberModeljComboBox = new javax.swing.JComboBox<>();
         volverjButton = new javax.swing.JButton();
         crearModelojButton = new javax.swing.JButton();
@@ -66,12 +55,6 @@ public class ModelosContrato extends javax.swing.JFrame {
         InmuebleComboBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 InmuebleComboBoxItemStateChanged(evt);
-            }
-        });
-
-        typeModeljComboBox.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                typeModeljComboBoxItemStateChanged(evt);
             }
         });
 
@@ -104,15 +87,14 @@ public class ModelosContrato extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(ArrendatarioComboBox, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(InmuebleComboBox, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(typeModeljComboBox, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(numberModeljComboBox, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .add(layout.createSequentialGroup()
-                .add(74, 74, 74)
+                .add(76, 76, 76)
                 .add(volverjButton)
-                .add(71, 71, 71)
+                .add(68, 68, 68)
                 .add(crearModelojButton)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -122,14 +104,12 @@ public class ModelosContrato extends javax.swing.JFrame {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(InmuebleComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(typeModeljComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(numberModeljComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(volverjButton)
                     .add(crearModelojButton))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -156,13 +136,6 @@ public class ModelosContrato extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_InmuebleComboBoxItemStateChanged
 
-    private void typeModeljComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_typeModeljComboBoxItemStateChanged
-        if (evt.getStateChange() == ItemEvent.SELECTED) {
-            typeInmueble = (TipoInmueble) typeModeljComboBox.getSelectedItem();
-            rellenarNumberModeljComboBox();
-        } 
-    }//GEN-LAST:event_typeModeljComboBoxItemStateChanged
-
     private void numberModeljComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_numberModeljComboBoxItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             numeroModel = (int) numberModeljComboBox.getSelectedItem();
@@ -171,15 +144,15 @@ public class ModelosContrato extends javax.swing.JFrame {
 
     private void crearModelojButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearModelojButtonActionPerformed
         if(comprobarCampos()){
-            switch(typeInmueble){
+            switch(inmueble.getTipoInmueble()){
             case VIVIENDA:
                 if(numeroModel == 1) new GeneradorPDFModeloContratoVivienda1(arrendatario, inmueble, contrato, numeroModel);
                 break;
             case APARCAMIENTO:
-                if(numeroModel == 1) System.out.println("En construcción");
-                break;               
-            case LOCAL:
-                if(numeroModel == 1) System.out.println("En construcción");
+                if(numeroModel == 1) new GeneradorPDFModeloContratoAparcamiento1(arrendatario, inmueble, contrato, numeroModel);
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "No existe modelo de contrato para este tipo de inmueble");
                 break;
             }
         } else {
@@ -193,7 +166,6 @@ public class ModelosContrato extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> InmuebleComboBox;
     private javax.swing.JButton crearModelojButton;
     private javax.swing.JComboBox<String> numberModeljComboBox;
-    private javax.swing.JComboBox<String> typeModeljComboBox;
     private javax.swing.JButton volverjButton;
     // End of variables declaration//GEN-END:variables
 
@@ -214,15 +186,7 @@ public class ModelosContrato extends javax.swing.JFrame {
             model.addElement(inmueble);
         }
         InmuebleComboBox.setModel(model);
-    }
-    
-    private void rellenarTypeModelComboBox(){
-        DefaultComboBoxModel model = new DefaultComboBoxModel();
-        model.addElement(TipoInmueble.VIVIENDA);
-        model.addElement(TipoInmueble.APARCAMIENTO);
-        model.addElement(TipoInmueble.LOCAL);
-        typeModeljComboBox.setModel(model);
-    }
+    }   
     
     private void rellenarNumberModeljComboBox(){
         numberModeljComboBox.removeAllItems();
@@ -233,9 +197,8 @@ public class ModelosContrato extends javax.swing.JFrame {
                 break;
             case APARCAMIENTO:
                 model.addElement(1);
-                break;               
-            case LOCAL:
-                model.addElement(1);
+                break;
+            default:
                 break;
         }
         numberModeljComboBox.setModel(model);
