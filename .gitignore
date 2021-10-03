@@ -1,0 +1,4 @@
+# ignore all class
+*.class
+# ignore all jar
+*.jar
