@@ -17,8 +17,7 @@ import model.Configuracion;
 import model.Contrato;
 import model.Inmueble;
 import model.Arrendador;
-import org.apache.pdfbox.exceptions.COSVisitorException;
-import org.apache.pdfbox.util.PDFMergerUtility;
+import org.apache.pdfbox.multipdf.PDFMergerUtility;
 import static persistence.DataBase.selectArrendadorByIdArrendador;
 
 
@@ -95,10 +94,7 @@ public abstract class GeneradorPDFFactura {
             deskTop.open(new File(rutaArchivoTemporal));
         } catch (IOException ex) {
             ex.printStackTrace();
-        } catch (COSVisitorException ex) {
-            ex.printStackTrace();
-        }
-        
+        }       
     }
     
     public void eliminarCarpeta() {

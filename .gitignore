@@ -1,4 +1,4 @@
-# ignore all class
-*.class
-# ignore all jar
-*.jar
+.classpath
+.project
+.settings/
+target/
