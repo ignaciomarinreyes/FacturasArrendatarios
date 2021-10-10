@@ -87,5 +87,6 @@ ALTER TABLE arrendatario ADD COLUMN municipio VARCHAR(20) NOT NULL;
 
 ALTER TABLE contrato ADD COLUMN idArrendador int NOT NULL;
 ALTER TABLE contrato ADD FOREIGN KEY (idArrendador) REFERENCES arrendador(idArrendador) ON DELETE CASCADE;
+ALTER TABLE contrato ADD COLUMN inicioContrato date NOT NULL;
 
 ALTER TABLE arrendador ADD COLUMN codigoPostal VARCHAR(5) NOT NULL;

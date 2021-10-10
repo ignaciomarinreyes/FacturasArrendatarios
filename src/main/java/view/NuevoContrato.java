@@ -1,24 +1,24 @@
-
 package view;
 
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import model.Arrendatario;
 import model.Inmueble;
 import model.Arrendador;
 import persistence.DataBase;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class NuevoContrato extends javax.swing.JFrame {
-   
+
     private MainFrame mainFrame;
 
     public NuevoContrato(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
-        configurarNumeroMesesSpinner();
+        ((JTextField) initContractjDate.getDateEditor()).setEditable(false);
+        configurarNumeroYearSpinner();
         setVisible(true);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -35,7 +35,7 @@ public class NuevoContrato extends javax.swing.JFrame {
         }
         arrendatariosjComboBox.setModel(model);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -55,6 +55,8 @@ public class NuevoContrato extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         arrendadorjComboBox = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        initContractjDate = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,6 +100,8 @@ public class NuevoContrato extends javax.swing.JFrame {
 
         jLabel7.setText("Arrendador");
 
+        jLabel8.setText("Inicio");
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,38 +111,46 @@ public class NuevoContrato extends javax.swing.JFrame {
                 .add(volverjButton)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(aceptarjButton)
-                .add(19, 19, 19))
+                .add(17, 17, 17))
             .add(layout.createSequentialGroup()
+                .add(22, 22, 22)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(14, 14, 14)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(jLabel5)
+                            .add(jLabel3))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createSequentialGroup()
+                                .add(20, 20, 20)
+                                .add(duracionContratojSpinner, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(18, 18, 18)
+                                .add(jLabel4))
+                            .add(layout.createSequentialGroup()
+                                .add(18, 18, 18)
+                                .add(precioNormalInmueblejTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 171, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                    .add(layout.createSequentialGroup()
+                        .add(8, 8, 8)
+                        .add(jLabel6)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(precioPruebaInmueblejTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 171, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                             .add(jLabel2)
                             .add(jLabel1)
-                            .add(jLabel3)
-                            .add(jLabel5)
-                            .add(jLabel7))
+                            .add(jLabel7)
+                            .add(jLabel8))
                         .add(26, 26, 26)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(layout.createSequentialGroup()
-                                .add(duracionContratojSpinner, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                .add(jLabel4))
                             .add(arrendatariosjComboBox, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .add(inmueblesjComboBox, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(precioNormalInmueblejTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 171, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(arrendadorjComboBox, 0, 430, Short.MAX_VALUE)))
-                    .add(layout.createSequentialGroup()
-                        .add(22, 22, 22)
-                        .add(jLabel6)
-                        .add(18, 18, 18)
-                        .add(precioPruebaInmueblejTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 171, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                            .add(arrendadorjComboBox, 0, 430, Short.MAX_VALUE)
+                            .add(initContractjDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .add(17, 17, 17)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(arrendadorjComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel7))
@@ -150,7 +162,14 @@ public class NuevoContrato extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(inmueblesjComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel2))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(16, 16, 16)
+                        .add(jLabel8))
+                    .add(layout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(initContractjDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel3)
                     .add(duracionContratojSpinner, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -160,14 +179,14 @@ public class NuevoContrato extends javax.swing.JFrame {
                     .add(precioNormalInmueblejTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel5))
                 .add(18, 18, 18)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel6)
                     .add(precioPruebaInmueblejTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(volverjButton)
                     .add(aceptarjButton))
-                .add(16, 16, 16))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -183,15 +202,15 @@ public class NuevoContrato extends javax.swing.JFrame {
         Inmueble inmueble = (Inmueble) inmueblesjComboBox.getSelectedItem();
         if (comprobarCampos()) {
             Arrendador arrendador = (Arrendador) arrendadorjComboBox.getSelectedItem();
-            if(DataBase.insertContrato(arrendatario.getDni(), inmueble.getIdInmueble(), (Integer) duracionContratojSpinner.getValue(), Double.parseDouble(precioNormalInmueblejTextField.getText()), Double.parseDouble(precioPruebaInmueblejTextField.getText()), arrendador.getIdArrendador())){
+            if (DataBase.insertContrato(arrendatario.getDni(), inmueble.getIdInmueble(), (Integer) duracionContratojSpinner.getValue(), Double.parseDouble(precioNormalInmueblejTextField.getText()), Double.parseDouble(precioPruebaInmueblejTextField.getText()), arrendador.getIdArrendador(), initContractjDate.getDate())) {
                 JOptionPane.showMessageDialog(null, "La operación se realizó con éxito");
-            } else{
-                JOptionPane.showMessageDialog(null, "Se produjo un error");   
+            } else {
+                JOptionPane.showMessageDialog(null, "Se produjo un error");
             }
             resetearCampos();
             rellenarInmueblesComboBox(DataBase.selectInmuebleByIdInmuebleNotInContrato());
         } else {
-            JOptionPane.showMessageDialog(null, "Todos los campos tienen que estar rellenados, y los precios tienen que ser mayor o igual que 0");
+            JOptionPane.showMessageDialog(null, "Todos los campos tienen que estar rellenados, la duración del contrato debe ser superior a 0, y los precios tienen que ser mayor o igual que 0");
         }
     }//GEN-LAST:event_aceptarjButtonActionPerformed
 
@@ -209,8 +228,7 @@ public class NuevoContrato extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_precioPruebaInmueblejTextFieldKeyTyped
 
-    
-    private void rellenarArrendadoresComboBox(ArrayList<Arrendador> arrendadores){
+    private void rellenarArrendadoresComboBox(ArrayList<Arrendador> arrendadores) {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.addElement(new Inmueble(" -- Seleccione un arrendador --"));
         for (Arrendador arrendador : arrendadores) {
@@ -218,7 +236,7 @@ public class NuevoContrato extends javax.swing.JFrame {
         }
         arrendadorjComboBox.setModel(model);
     }
-    
+
     private void rellenarInmueblesComboBox(ArrayList<Inmueble> inmuebles) {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.addElement(new Inmueble(" -- Seleccione un inmueble --"));
@@ -234,16 +252,25 @@ public class NuevoContrato extends javax.swing.JFrame {
         duracionContratojSpinner.setValue(0);
         precioNormalInmueblejTextField.setText("");
         precioPruebaInmueblejTextField.setText("");
+        initContractjDate.setDate(null);
     }
 
-    private void configurarNumeroMesesSpinner() {
+    private void configurarNumeroYearSpinner() {
         SpinnerNumberModel nm = new SpinnerNumberModel();
         nm.setMinimum(0);
         duracionContratojSpinner.setModel(nm);
     }
 
     private boolean comprobarCampos() {
-        return arrendadorjComboBox.getSelectedIndex() > 0 && arrendatariosjComboBox.getSelectedIndex() > 0 && inmueblesjComboBox.getSelectedIndex() > 0 && !precioNormalInmueblejTextField.getText().equals("") && !precioPruebaInmueblejTextField.getText().equals("") && Double.parseDouble(precioNormalInmueblejTextField.getText()) >= 0 && Double.parseDouble(precioPruebaInmueblejTextField.getText()) >= 0 ? true : false;
+        return arrendadorjComboBox.getSelectedIndex() > 0
+                && arrendatariosjComboBox.getSelectedIndex() > 0
+                && inmueblesjComboBox.getSelectedIndex() > 0
+                && (Integer) duracionContratojSpinner.getValue() != 0
+                && !precioNormalInmueblejTextField.getText().isEmpty()
+                && !precioPruebaInmueblejTextField.getText().isEmpty()
+                && Double.parseDouble(precioNormalInmueblejTextField.getText()) >= 0
+                && Double.parseDouble(precioPruebaInmueblejTextField.getText()) >= 0
+                && initContractjDate.getDate() != null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -251,6 +278,7 @@ public class NuevoContrato extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> arrendadorjComboBox;
     private javax.swing.JComboBox<String> arrendatariosjComboBox;
     private javax.swing.JSpinner duracionContratojSpinner;
+    private com.toedter.calendar.JDateChooser initContractjDate;
     private javax.swing.JComboBox<String> inmueblesjComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -259,6 +287,7 @@ public class NuevoContrato extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField precioNormalInmueblejTextField;
     private javax.swing.JTextField precioPruebaInmueblejTextField;
     private javax.swing.JButton volverjButton;

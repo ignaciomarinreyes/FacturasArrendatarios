@@ -5,7 +5,9 @@
  */
 package view;
 
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ItemEvent;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -47,7 +49,9 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         configurarJTable();
         ocultarColumna(RegistroFacturaTable, 0);
-        setLocationRelativeTo(null);
+        Dimension dimensionScreen = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimensionScreen.getWidth() - this.getWidth()) / 2);
+        this.setLocation(x, 20);
         setResizable(false);
         configurarNumeroMesesSpinner();
         setVisible(true);
