@@ -22,24 +22,15 @@ import model.TipoInmueble;
 import model.Configuracion;
 import model.CobrosCliente;
 import model.NotificationContract;
+import control.Properties;
 
 public class DataBase {
 
-    /*public static Connection getConnection() { // local
-        Connection con = null;
-        String URL = "jdbc:mysql://localhost:3306/alquileres";
-        try {
-            con = DriverManager.getConnection(URL, "root", "prueba123");
-        } catch (SQLException ex) {
-            Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return con;
-    }*/
-    public static Connection getConnection() { // disco duro red
+    public static Connection getConnection() { 
         Connection con = null;
         try {
-            Class.forName("org.mariadb.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mariadb://192.168.1.34:3306/alquileres", "cliente", "Ignaciomarin-123");
+            Class.forName(Properties.get("driver"));
+            con = DriverManager.getConnection(Properties.get("jdbc"), Properties.get("user"), Properties.get("pass"));
         } catch (SQLException ex) {
             Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
