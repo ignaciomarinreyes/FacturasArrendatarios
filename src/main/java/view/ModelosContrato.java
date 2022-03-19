@@ -17,13 +17,13 @@ public class ModelosContrato extends javax.swing.JFrame {
     private Arrendatario arrendatario;
     private Inmueble inmueble;
     private Contrato contrato;
-    private MainFrame2 mainFrame2;
+    private MainFrame mainFrame;
     private TipoInmueble typeInmueble;
     private int numeroModel;
 
-    public ModelosContrato(MainFrame2 mainFrame2) {
+    public ModelosContrato(MainFrame mainFrame) {
         initComponents();
-        this.mainFrame2 = mainFrame2;
+        this.mainFrame = mainFrame;
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -116,7 +116,7 @@ public class ModelosContrato extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void volverjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverjButtonActionPerformed
-        this.mainFrame2.setVisible(true);
+        this.mainFrame.setVisible(true);
         dispose();
     }//GEN-LAST:event_volverjButtonActionPerformed
 

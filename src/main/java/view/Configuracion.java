@@ -5,14 +5,12 @@ import persistence.DataBase;
 
 public class Configuracion extends javax.swing.JFrame {
 
-    private MainFrame2 mainFrame2;
     private MainFrame mainFrame;
     private model.Configuracion configuracion;
 
-    public Configuracion(MainFrame2 mainFrame2) {
+    public Configuracion(MainFrame mainFrame) {
         initComponents();
-        this.mainFrame2 = mainFrame2;
-        this.mainFrame = mainFrame2.getMainFrame();
+        this.mainFrame = mainFrame;
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -116,7 +114,7 @@ public class Configuracion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void volverjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverjButtonActionPerformed
-        mainFrame2.setVisible(true);
+        mainFrame.setVisible(true);
         dispose();
     }//GEN-LAST:event_volverjButtonActionPerformed
 
