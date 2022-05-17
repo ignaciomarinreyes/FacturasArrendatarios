@@ -90,3 +90,8 @@ ALTER TABLE contrato ADD FOREIGN KEY (idArrendador) REFERENCES arrendador(idArre
 ALTER TABLE contrato ADD COLUMN inicioContrato date NOT NULL;
 
 ALTER TABLE arrendador ADD COLUMN codigoPostal VARCHAR(5) NOT NULL;
+
+ALTER TABLE alquileres.arrendatario MODIFY COLUMN localidad varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+ALTER TABLE alquileres.arrendatario MODIFY COLUMN municipio varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+ALTER TABLE alquileres.arrendatario MODIFY COLUMN nombreCalle varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+
